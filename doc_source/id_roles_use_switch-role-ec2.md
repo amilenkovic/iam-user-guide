@@ -13,7 +13,7 @@ Although a role is usually assigned to an EC2 instance when you launch it, a rol
 
 ## How Do Roles for EC2 Instances Work?<a name="roles-usingrole-ec2instance-roles"></a>
 
-In the following figure, a developer runs an application on an EC2 instance that requires access to the S3 bucket named `photos`\. An administrator creates the `Get-pics` role\. The role includes policies that grant read permissions for the bucket and that allow the developer to launch the role with an EC2 instance\. When the application runs on the instance, it can use the role's temporary credentials to access the photos bucket\. The administrator doesn't have to grant the developer permission to access the photos bucket, and the developer never has to share or manage credentials\.
+In the following figure, a developer runs an application on an EC2 instance that requires access to the S3 bucket named `photos`\. An administrator creates the `Get-pics` service role and attaches the role to the EC2 instance\. The role includes a permissions policy that grants read\-only access to the specified S3 bucket\. It also includes a trust policy that allows the EC2 instance to assume the role and retrieve the temporary credentials\. When the application runs on the instance, it can use the role's temporary credentials to access the photos bucket\. The administrator doesn't have to grant the developer permission to access the photos bucket, and the developer never has to share or manage credentials\.
 
 ![\[Application on an EC2 instance accessing an AWS resource\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/images/roles-usingrole-ec2roleinstance.png)
 
@@ -89,13 +89,9 @@ The following sample policy allows users to use the Amazon EC2 API to launch an 
 ## How Do I Get Started?<a name="roles-usingrole-ec2instance-get-started"></a>
 
 To understand how roles work with EC2 instances, you need to use the IAM console to create a role, launch an EC2 instance that uses that role, and then examine the running instance\. You can examine the [instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html) to see how the role's temporary credentials are made available to an instance\. You can also see how an application that runs on an instance can use the role\. Use the following resources to learn more\. 
-
 + SDK walkthroughs\. The AWS SDK documentation includes walkthroughs that show an application running on an EC2 instance that uses temporary credentials for roles to read an Amazon S3 bucket\. Each of the following walkthroughs presents similar steps with a different programming language:
-
   + [ Using IAM Roles for EC2 Instances with the SDK for Java](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-roles.html) in the *AWS SDK for Java Developer Guide* 
-
   + [ Using IAM Roles for EC2 Instances with the SDK for \.NET](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-roles.html) in the *AWS SDK for \.NET Developer Guide*
-
   + [ Using IAM Roles for EC2 Instances with the SDK for Ruby](http://docs.aws.amazon.com/sdk-for-ruby/v2/developer-guide/ruby-dg-roles.html) in the *AWS SDK for Ruby Developer Guide*
 
     The walkthroughs provide complete step\-by\-step instructions for creating and compiling the example program, creating the role, launching the instance, connecting to the instance, deploying the example program, and testing it\.
@@ -103,13 +99,8 @@ To understand how roles work with EC2 instances, you need to use the IAM console
 ## Related Information<a name="roles-usingrole-ec2instance-related-info"></a>
 
 For more information about creating roles or roles for EC2 instances, see the following information:
-
 + For more information about [using IAM roles with Amazon EC2 instances](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingIAM.html#UsingIAMrolesWithAmazonEC2Instances), go to the *Amazon EC2 User Guide for Linux Instances*\.
-
 + To create a role, see [Creating IAM Roles](id_roles_create.md)
-
 + For more information about using temporary security credentials, see [Temporary Security Credentials](id_credentials_temp.md)\.
-
 + If you work with the IAM API or CLI, you must create and manage IAM instance profiles\. For more information about instance profiles, see [Using Instance Profiles](id_roles_use_switch-role-ec2_instance-profiles.md)\.
-
 + For more information about temporary security credentials for roles in the instance metadata, see [Retrieving Security Credentials from Instance Metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#instance-metadata-security-credentials) in the Amazon EC2 User Guide for Linux Instances\.

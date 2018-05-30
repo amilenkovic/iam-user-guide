@@ -4,7 +4,7 @@ Policies are summarized in three tables: the [policy summary](access_policies_un
 
 ![\[Policy summaries diagram image that illustrates the 3 tables and their relationship\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/images/policy_summaries-svc-sum.png)
 
-You can view a service summary for each service listed in the policy summary that grants permissions\. The table is grouped into **Uncategorized actions**, **Uncategorized resource types**, and access level sections\. If the policy includes an action that IAM does not recognize, then the action is included in the **Uncategorized actions** section of the table\. If IAM recognizes the action, then it is included under one of the access level \(**List**, **Read**, **Write** and **Permissions management**\) sections of the table\. To view a list of actions that belong to each of the action levels for a specific service, see [IAM Policy Actions Grouped by Access Level](reference_policies_access-levels.md)\. To see a complete list of actions for a specific service, see [AWS Service Actions and Condition Context Keys for Use in IAM Policies](reference_policies_actionsconditions.md)\.
+You can view a service summary for each service listed in the policy summary that grants permissions\. The table is grouped into **Uncategorized actions**, **Uncategorized resource types**, and access level sections\. If the policy includes an action that IAM does not recognize, then the action is included in the **Uncategorized actions** section of the table\. If IAM recognizes the action, then it is included under one of the access level \(**List**, **Read**, **Write** and **Permissions management**\) sections of the table\. To view the access level classification that is assigned to each action in a service, see [Actions, Resources, and Condition Keys for AWS Services](reference_policies_actions-resources-contextkeys.md)\.
 
 ## Viewing Service Summaries<a name="viewing-service-summaries"></a>
 
@@ -78,7 +78,7 @@ The service summary page for a managed policy includes the following information
 **Note**  
 IAM reviews service names, actions, and resource types for services that support policy summaries\. However, your policy summary might include a resource value or condition that does not exist\. Always test your policies with the [policy simulator](access_policies_testing-policies.md)\.
 
-1. For those actions that IAM recognizes, the table groups these actions into at least one or up to four sections, depending on the level of access that the policy allows or denies\. The sections are **List**, **Read**, **Write**, and **Permissions management**\. You can also see the number of actions that are defined out of the total number of actions available within each access level\. For information about which actions belong to each of the action levels for AWS services, see [IAM Policy Actions Grouped by Access Level](reference_policies_access-levels.md)\. To see a complete list of actions for a specific service, see [AWS Service Actions and Condition Context Keys for Use in IAM Policies](reference_policies_actionsconditions.md)\.
+1. For those actions that IAM recognizes, the table groups these actions into at least one or up to four sections, depending on the level of access that the policy allows or denies\. The sections are **List**, **Read**, **Write**, and **Permissions management**\. You can also see the number of actions that are defined out of the total number of actions available within each access level\. To view the access level classification that is assigned to each action in a service, see [Actions, Resources, and Condition Keys for AWS Services](reference_policies_actions-resources-contextkeys.md)\.
 
 1. The ellipses \(…\) indicate that all the actions are included in the page, but we are showing only the rows with information relevant to this policy\. When you view this page in the AWS Management Console, you see all the actions for your service\.
 
@@ -91,11 +91,8 @@ IAM reviews service names, actions, and resource types for services that support
 This column can include a resource from a different service\. If the policy statement that includes the resource does not include both actions and resources from the same service, then your policy includes mismatched resources\. IAM does not warn you about mismatched resources when you create a policy, or when you view a policy in the service summary\. IAM also does not indicate whether the action applies to the resources, only whether the service matches\. If this column includes a mismatched resource, then you should review your policy for errors\. To better understand your policies, always test them with the [policy simulator](access_policies_testing-policies.md)\.
 
 1. **Resource warning** – For actions with resources that do not provide full permissions, you see one of the following warnings:
-
    + **This action does not support resource\-level permissions\. This requires a wildcard \(\*\) for the resource\.** – This means that the policy includes resource\-level permissions but must include `"Resource": ["*"]` to provide permissions for this action\.
-
    + **This action does not have an applicable resource\.** – This means that the action is included in the policy without a supported resource\.
-
    + **This action does not have an applicable resource and condition\.** – This means that the action is included in the policy without a supported resource and without a supported condition\. In this case, there is also condition included in the policy for this service, but there are no conditions that apply to this action\.
 
    For the `ListAllMyBuckets` action, this policy includes the last warning because the action does not support resource\-level permissions and does not support the `s3:x-amz-acl` condition key\. If you fix either the resource problem or the condition problem, the remaining issue appears in a detailed warning\.
@@ -103,9 +100,7 @@ This column can include a resource from a different service\. If the policy stat
 1. **Request condition** – This column tells whether the actions associated with the resource are subject to conditions\. To learn more about those conditions, choose **\{ \} JSON** to review the JSON policy document\.
 
 1. **Condition warning** – For actions with conditions that do not provide full permissions, you see one of the following warnings:
-
    + **<CONDITION\_KEY> is not a supported condition key for this action\.** – This means that the policy includes a condition key for the service that is not supported for this action\.
-
    + **Multiple condition keys are not supported for this action\.** – This means that the policy includes more than one condition keys for the service that are not supported for this action\.
 
    For `GetObject`, this policy includes the `s3:x-amz-acl` condition key, which will not work with this action\. Although the action supports the resource, the policy does not grant any permissions for this action because the condition will never be true for this action\.

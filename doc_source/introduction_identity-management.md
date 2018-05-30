@@ -2,7 +2,7 @@
 
 For greater security and organization, you can give access to your AWS account to specific users—identities that you create with custom permissions\. You can further simplify access for those users by federating existing identities into AWS\. 
 
-
+**Topics**
 + [First\-Time Access Only: Your Root User Credentials](#intro-identity-first-time-access)
 + [IAM Users](#intro-identity-users)
 + [Federating Existing Users](#intro-identity-federation)
@@ -27,10 +27,13 @@ We recommend that you create an IAM user for yourself and then assign yourself a
 
 ## Federating Existing Users<a name="intro-identity-federation"></a>
 
-If your users already have a way to be authenticated—for example, by signing in to your corporate network—you can *federate* those user identities into AWS\. A user who has already logged in replaces his or her existing identity with a temporary identity in your AWS account\. This user can work in the AWS Management Console\. Similarly, an application that the user is working with can make programmatic requests using permissions that you define\.
+If the users in your organization already have a way to be authenticated, such as by signing in to your corporate network, you don't have to create separate IAM users for them\. Instead, you can *federate* those user identities into AWS\.
+
+The following diagram shows how a user can use IAM to get temporary AWS security credentials to access resources in your AWS account\. 
+
+![\[Users who are already authenticated elsewhere can be federated into AWS without requiring an IAM user.\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/)![\[Users who are already authenticated elsewhere can be federated into AWS without requiring an IAM user.\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
 
 Federation is particularly useful in these cases: 
-
 + **Your users already have identities in a corporate directory\.** 
 
   If your corporate directory is compatible with Security Assertion Markup Language 2\.0 \(SAML 2\.0\), you can configure your corporate directory to provide single\-sign on \(SSO\) access to the AWS Management Console for your users\. For more information, see [Common Scenarios for Temporary Credentials](id_credentials_temp.md#sts-introduction)\. 
@@ -38,13 +41,8 @@ Federation is particularly useful in these cases:
   If your corporate directory is not compatible with SAML 2\.0, you can create an identity broker application to provide single\-sign on \(SSO\) access to the AWS Management Console for your users\. For more information, see [Creating a URL that Enables Federated Users to Access the AWS Management Console \(Custom Federation Broker\)](id_roles_providers_enable-console-custom-url.md)\. 
 
   If your corporate directory is Microsoft Active Directory, you can use [AWS Directory Service](https://aws.amazon.com/directoryservice/) to establish trust between your corporate directory and your AWS account\. 
-
 + **Your users already have Internet identities\.**
 
   If you are creating a mobile app or web\-based app that can let users identify themselves through an Internet identity provider like Login with Amazon, Facebook, Google, or any OpenID Connect \(OIDC\) compatible identity provider, the app can use federation to access AWS\. For more information, see [About Web Identity Federation](id_roles_providers_oidc.md)\. 
 **Tip**  
 To use identity federation with Internet identity providers, we recommend you use [Amazon Cognito](http://docs.aws.amazon.com/cognito/devguide/)\.
-
-The following diagram shows how a user can use IAM to get temporary AWS security credentials to access resources in your AWS account\. 
-
-![\[Users who are already authenticated elsewhere can be federated into AWS without requiring an IAM user.\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/)![\[Users who are already authenticated elsewhere can be federated into AWS without requiring an IAM user.\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/)

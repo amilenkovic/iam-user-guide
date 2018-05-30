@@ -1,11 +1,9 @@
 # About SAML 2\.0\-based Federation<a name="id_roles_providers_saml"></a>
 
-AWS supports identity federation with [SAML 2\.0 \(Security Assertion Markup Language 2\.0\)](https://wiki.oasis-open.org/security), an open standard that many identity providers \(IdPs\) use\. This feature enables federated single sign\-on \(SSO\), so users can log into the AWS Management Console or call the AWS APIs without you having to create an IAM user for everyone in your organization\. By using SAML, you can simplify the process of configuring federation with AWS, because you can use the IdP's service instead of [writing custom identity proxy code](http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html)\.
+AWS supports identity federation with [SAML 2\.0 \(Security Assertion Markup Language 2\.0\)](https://wiki.oasis-open.org/security), an open standard that many identity providers \(IdPs\) use\. This feature enables federated single sign\-on \(SSO\), so users can log into the AWS Management Console or call the AWS API operations without you having to create an IAM user for everyone in your organization\. By using SAML, you can simplify the process of configuring federation with AWS, because you can use the IdP's service instead of [writing custom identity proxy code](http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html)\.
 
 IAM federation supports these use cases: 
-
-+ [**Federated access to allow a user or application in your organization to call AWS APIs**](#CreatingSAML-configuring)\. You use a SAML assertion \(as part of the authentication response\) that is generated in your organization to get temporary security credentials\. This scenario is similar to other federation scenarios that IAM supports, like those described in [Requesting Temporary Security Credentials](id_credentials_temp_request.md) and [About Web Identity Federation](id_roles_providers_oidc.md)\. However, SAML 2\.0–based identity providers in your organization handle many of the details at run time for performing authentication and authorization checking\. This is the scenario discussed in this topic\.
-
++ [**Federated access to allow a user or application in your organization to call AWS API operations**](#CreatingSAML-configuring)\. You use a SAML assertion \(as part of the authentication response\) that is generated in your organization to get temporary security credentials\. This scenario is similar to other federation scenarios that IAM supports, like those described in [Requesting Temporary Security Credentials](id_credentials_temp_request.md) and [About Web Identity Federation](id_roles_providers_oidc.md)\. However, SAML 2\.0–based identity providers in your organization handle many of the details at run time for performing authentication and authorization checking\. This is the scenario discussed in this topic\.
 + [**Web\-based single sign\-on \(SSO\) to the AWS Management Console from your organization**](id_roles_providers_enable-console-saml.md)\. Users can sign in to a portal in your organization hosted by a SAML 2\.0–compatible IdP, select an option to go to AWS, and be redirected to the console without having to provide additional sign\-in information\. In addition to being able to use a third\-party SAML IdP to establish SSO access to the console, you can alternatively create a custom IdP to enable console access for your external users\. For more information about building a custom IdP, see [Creating a URL that Enables Federated Users to Access the AWS Management Console \(Custom Federation Broker\)](id_roles_providers_enable-console-custom-url.md)\.
 
 ## Using SAML\-Based Federation for API Access to AWS<a name="CreatingSAML-configuring"></a>
@@ -24,7 +22,7 @@ Imagine that in your organization, you want to provide a way for users to copy d
 
 1. The API response to the client app includes temporary security credentials\.
 
-1. The client app uses the temporary security credentials to call Amazon S3 APIs\. 
+1. The client app uses the temporary security credentials to call Amazon S3 API operations\. 
 
 ### Overview of Configuring SAML 2\.0\-Based Federation<a name="CreatingSAML-configuring-IdP"></a>
 
@@ -76,7 +74,7 @@ The role or roles that you create in IAM define what federated users from your o
 }
 ```
 
-For more information about the SAML keys that you can check in a policy, see [Available Keys for SAML\-Based Federation](reference_policies_condition-keys.md#condition-keys-saml)\.
+For more information about the SAML keys that you can check in a policy, see [Available Keys for SAML\-Based Federation](reference_policies_iam-condition-keys.md#condition-keys-saml)\.
 
 For the permission policy in the role, you specify permissions as you would for any role\. For example, if users from your organization are allowed to administer Amazon Elastic Compute Cloud instances, you must explicitly allow Amazon EC2 actions in the permissions policy, such as those in the **AmazonEC2FullAccess** managed policy\. 
 
@@ -93,17 +91,14 @@ myBucket/app1/user3
 You can create the bucket \(`myBucket`\) and folder \(`app1`\) through the Amazon S3 console or the AWS CLI, since those are static values\. However, the user\-specific folders \(*user1*, *user2*, *user3*, etc\.\) have to be created at run time using code, since the value that identifies the user isn't known until the first time the user signs in through the federation process\. 
 
 To write policies that reference user\-specific details as part of a resource name, the user identity has to be available in SAML keys that can be used in policy conditions\. The following keys are available for SAML 2\.0–based federation for use in IAM policies\. You can use the values returned by the following keys to create unique user identifiers for resources like Amazon S3 folders\. 
-
-+ `saml:namequalifier`\. A hash value based on the concatenation of the `Issuer` response value \(`saml:iss`\) and a string with the `AWS` account ID and the friendly name \(the last part of the ARN\) of the SAML provider in IAM\. The concatenation of the account ID and friendly name of the SAML provider is available to IAM policies as the key `saml:doc`\. The account ID and provider name must be separated by a '/' as in "123456789012/provider\_name"\. For more information, see the `saml:doc` key at [Available Keys for SAML\-Based Federation](reference_policies_condition-keys.md#condition-keys-saml)\.
++ `saml:namequalifier`\. A hash value based on the concatenation of the `Issuer` response value \(`saml:iss`\) and a string with the `AWS` account ID and the friendly name \(the last part of the ARN\) of the SAML provider in IAM\. The concatenation of the account ID and friendly name of the SAML provider is available to IAM policies as the key `saml:doc`\. The account ID and provider name must be separated by a '/' as in "123456789012/provider\_name"\. For more information, see the `saml:doc` key at [Available Keys for SAML\-Based Federation](reference_policies_iam-condition-keys.md#condition-keys-saml)\.
 
   The combination of `NameQualifier` and `Subject` can be used to uniquely identify a federated user\. The following pseudocode shows how this value is calculated\. In this pseudocode `+` indicates concatenation, `SHA1` represents a function that produces a message digest using SHA\-1, and `Base64` represents a function that produces Base\-64 encoded version of the hash output\.
 
    `Base64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP" ) )` 
 
-   For more information about the policy keys that are available for SAML\-based federation, see [Available Keys for SAML\-Based Federation](reference_policies_condition-keys.md#condition-keys-saml)\.
-
+   For more information about the policy keys that are available for SAML\-based federation, see [Available Keys for SAML\-Based Federation](reference_policies_iam-condition-keys.md#condition-keys-saml)\.
 + `saml:sub` \(string\)\. This is the subject of the claim, which includes a value that uniquely identifies an individual user within an organization \(for example, `_cbb88bf52c2510eabe00c1642d4643f41430fe25e3`\)\. 
-
 + `saml:sub_type` \(string\)\. This key can be `persistent`, `transient`, or the full `Format` URI from the `Subject` and `NameID` elements used in your SAML assertion\. A value of `persistent` indicates that the value in `saml:sub` is the same for a user across all sessions\. If the value is `transient`, the user has a different `saml:sub` value for each session\. For information about the `NameID` element's `Format` attribute, see [Configuring SAML Assertions for the Authentication Response](id_roles_providers_create_saml_assertions.md)\. 
 
 The following example shows a permission policy that uses the preceding keys to grant permissions to a user\-specific folder in Amazon S3\. The policy assumes that the Amazon S3 objects are identified using a prefix that includes both `saml:namequalifier` and `saml:sub`\. Notice that the `Condition` element includes a test to be sure that `saml:sub_type` is set to `persistent`\. If it is set to `transient`, the `saml:sub` value for the user can be different for each session, and the combination of values should not be used to identity user\-specific folders\. 

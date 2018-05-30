@@ -4,7 +4,7 @@ AWS Identity and Access Management \(IAM\) is a web service that helps you secur
 
  When you first create an AWS account, you begin with a single sign\-in identity that has complete access to all AWS services and resources in the account\. This identity is called the AWS account *root user* and is accessed by signing in with the email address and password that you used to create the account\. We strongly recommend that you do not use the root user for your everyday tasks, even the administrative ones\. Instead, adhere to the [best practice of using the root user only to create your first IAM user](http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users)\. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks\.
 
-
+**Topics**
 + [Video Introduction to IAM](#intro-video)
 + [IAM Features](#intro-features)
 + [Accessing IAM](#intro-accessing)
@@ -31,7 +31,7 @@ You can grant other people permission to administer and use resources in your AW
 You can grant different permissions to different people for different resources\. For example, you might allow some users complete access to Amazon Elastic Compute Cloud \(Amazon EC2\), Amazon Simple Storage Service \(Amazon S3\), Amazon DynamoDB, Amazon Redshift, and other AWS services\. For other users, you can allow read\-only access to just some S3 buckets, or permission to administer just some EC2 instances, or to access your billing information but nothing else\.
 
 **Secure access to AWS resources for applications that run on Amazon EC2**  
-You can use IAM features to securely give applications that run on EC2 instances the credentials that they need in order to access other AWS resources\. Examples include S3 buckets and RDS or DynamoDB databases\. 
+You can use IAM features to securely provide credentials for applications that run on EC2 instances\. These credentials provide permissions for your application to access other AWS resources\. Examples include S3 buckets and DynamoDB tables\. 
 
 **Multi\-factor authentication \(MFA\)**  
 You can add two\-factor authentication to your account and to individual users for extra security\. With MFA you or your users must provide not only a password or access key to work with your account, but also a code from a specially configured device\. 
@@ -52,8 +52,7 @@ For a list of AWS services that work with IAM, see [AWS Services That Work with 
 IAM, like many other AWS services, is [eventually consistent](https://wikipedia.org/wiki/Eventual_consistency)\. IAM achieves high availability by replicating data across multiple servers within Amazon's data centers around the world\. If a request to change some data is successful, the change is committed and safely stored\. However, the change must be replicated across IAM, which can take some time\. Such changes include creating or updating users, groups, roles, or policies\. We recommend that you do not include such IAM changes in the critical, high\-availability code paths of your application\. Instead, make IAM changes in a separate initialization or setup routine that you run less frequently\. Also, be sure to verify that the changes have been propagated before production workflows depend on them\. For more information, see [Changes that I make are not always immediately visible](troubleshoot_general.md#troubleshoot_general_eventual-consistency)\.
 
 **Free to use**  
-AWS Identity and Access Management is a feature of your AWS account offered at no additional charge\. You will be charged only for use of other AWS products by your IAM users\. For information about the pricing of other AWS products, see the [Amazon Web Services pricing page](https://aws.amazon.com/pricing/)\.  
-AWS Security Token Service is an included feature of your AWS account offered at no additional charge\. You are charged only for the use of other AWS services that are accessed by your AWS STS temporary security credentials\. For information about the pricing of other AWS services, see the [Amazon Web Services pricing page](http://aws.amazon.com/pricing/)\.
+AWS Identity and Access Management \(IAM\) and AWS Security Token Service \(AWS STS\) are features of your AWS account offered at no additional charge\. You are charged only when you access other AWS services using your IAM users or AWS STS temporary security credentials\. For information about the pricing of other AWS products, see the [Amazon Web Services pricing page](https://aws.amazon.com/pricing/)\.
 
 ## Accessing IAM<a name="intro-accessing"></a>
 

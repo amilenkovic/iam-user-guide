@@ -1,6 +1,6 @@
 # Creating SAML Identity Providers<a name="id_roles_providers_create_saml"></a>
 
-A SAML 2\.0 identity provider is an entity in IAM that describes an identity provider \(IdP\) service that supports the [SAML 2\.0 \(Security Assertion Markup Language 2\.0\)](https://wiki.oasis-open.org/security) standard\. You use a SAML identity provider when you want to establish trust between an SAML\-compatible IdP such as Shibboleth or Active Directory Federation Services so that users in your organization can access AWS resources\. SAML identity providers in IAM are used as principals in an IAM trust policy\. 
+A SAML 2\.0 identity provider is an entity in IAM that describes an identity provider \(IdP\) service that supports the [SAML 2\.0 \(Security Assertion Markup Language 2\.0\)](https://wiki.oasis-open.org/security) standard\. You use a SAML identity provider when you want to establish trust between a SAML\-compatible IdP such as Shibboleth or Active Directory Federation Services and AWS, so that users in your organization can access AWS resources\. SAML identity providers in IAM are used as principals in an IAM trust policy\. 
 
 For more information about this scenario, see [About SAML 2\.0\-based Federation](id_roles_providers_saml.md)\.
 
@@ -10,7 +10,7 @@ After you create a SAML provider, you must create one or more IAM roles\. A role
 
 Finally, after you create the role, you complete the SAML trust by configuring your IdP with information about AWS and the role\(s\) that you want your federated users to use\. This is referred to as configuring relying party trust between your IdP and AWS\. To configure relying party trust, see [Configuring your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](id_roles_providers_create_saml_relying-party.md)\. 
 
-
+**Topics**
 + [Creating and Managing a SAML Identity Provider \(AWS Management Console\)](#idp-manage-identityprovider-console)
 + [Managing a SAML Provider \(AWS CLI, Tools for Windows PowerShell and AWS API\)](#idp-create-identityprovider-CLIAPI)
 + [Configuring your SAML 2\.0 IdP with Relying Party Trust and Adding Claims](id_roles_providers_create_saml_relying-party.md)
@@ -54,41 +54,26 @@ The metadata file must be encoded in UTF\-8 format without a byte order mark \(B
 Use the following commands to create and manage a SAML provider\.
 
 **To create an identity provider and upload a metadata document**
-
 + AWS CLI: [http://docs.aws.amazon.com/cli/latest/reference/iam/create-saml-provider.html](http://docs.aws.amazon.com/cli/latest/reference/iam/create-saml-provider.html) 
-
 + Tools for Windows PowerShell: [http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=New-IAMSAMLProvider.html&tocid=New-IAMSAMLProvider](http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=New-IAMSAMLProvider.html&tocid=New-IAMSAMLProvider)
-
 + AWS API: [http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateSAMLProvider.html](http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateSAMLProvider.html) 
 
 **To upload a new metadata document for an IdP**
-
 + AWS CLI: [http://docs.aws.amazon.com/cli/latest/reference/iam/update-saml-provider.html](http://docs.aws.amazon.com/cli/latest/reference/iam/update-saml-provider.html) 
-
 + Tools for Windows PowerShell: [http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Update-IAMSAMLProvider.html&tocid=Update-IAMSAMLProvider](http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Update-IAMSAMLProvider.html&tocid=Update-IAMSAMLProvider)
-
 + AWS API: [http://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateSAMLProvider.html](http://docs.aws.amazon.com/IAM/latest/APIReference/API_UpdateSAMLProvider.html)
 
 **To get information about a specific provider, such as the ARN, creation date, and expiration**
-
 + AWS CLI: [http://docs.aws.amazon.com/cli/latest/reference/iam/get-saml-provider.html](http://docs.aws.amazon.com/cli/latest/reference/iam/get-saml-provider.html)
-
 + Tools for Windows PowerShell: [http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Get-IAMSAMLProvider.html&tocid=Get-IAMSAMLProvider](http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Get-IAMSAMLProvider.html&tocid=Get-IAMSAMLProvider)
-
 + AWS API: [http://docs.aws.amazon.com/IAM/latest/APIReference/API_GetSAMLProvider.html](http://docs.aws.amazon.com/IAM/latest/APIReference/API_GetSAMLProvider.html)
 
 **To list information for all IdPs, such as the ARN, creation date, and expiration**
-
 + AWS CLI: [http://docs.aws.amazon.com/cli/latest/reference/iam/list-saml-providers.html](http://docs.aws.amazon.com/cli/latest/reference/iam/list-saml-providers.html) 
-
 + Tools for Windows PowerShell: [http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Get-IAMSAMLProviders.html&tocid=Get-IAMSAMLProviders](http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Get-IAMSAMLProviders.html&tocid=Get-IAMSAMLProviders)
-
 + AWS API: [http://docs.aws.amazon.com/IAM/latest/APIReference/API_ListSAMLProviders.html](http://docs.aws.amazon.com/IAM/latest/APIReference/API_ListSAMLProviders.html) 
 
 **To delete an IdP**
-
 + AWS CLI: [http://docs.aws.amazon.com/cli/latest/reference/iam/delete-saml-provider.html](http://docs.aws.amazon.com/cli/latest/reference/iam/delete-saml-provider.html)
-
 + Tools for Windows PowerShell: [http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Remove-IAMSAMLProvider.html&tocid=Remove-IAMSAMLProvider](http://docs.aws.amazon.com/powershell/latest/reference/Index.html?page=Remove-IAMSAMLProvider.html&tocid=Remove-IAMSAMLProvider)
-
 + AWS API: [http://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteSAMLProvider.html](http://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteSAMLProvider.html)

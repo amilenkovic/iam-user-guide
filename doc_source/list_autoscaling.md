@@ -1,139 +1,56 @@
-# Actions and Condition Context Keys for Auto Scaling<a name="list_autoscaling"></a>
+# Actions, Resources, and Condition Keys for Auto Scaling<a name="list_autoscaling"></a>
 
-Auto Scaling \(service prefix: autoscaling\) provides the following service\-specific actions and condition context keys for use in IAM policies\.
+Auto Scaling \(service prefix: `autoscaling`\) provides the following service\-specific resources, actions, and condition context keys for use in IAM permission policies\.
 
-**Actions for Auto Scaling**
+References:
++ Learn how to [configure this service](http://docs.aws.amazon.com/autoscaling/latest/userguide/)\.
++ View a [list of the API operations available for this service](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/)\.
++ Learn how to protect this service and its resources by [using IAM](http://docs.aws.amazon.com/autoscaling/latest/userguide/IAM.html) permission policies\.
 
-For information about using the following Auto Scaling API actions in an IAM policy, see [Auto Scaling Actions](http://docs.aws.amazon.com/autoscaling/latest/userguide/IAM.html#UsingWithAutoScaling_Actions) in the *Amazon EC2 Auto Scaling User Guide*\.
+**Topics**
++ [Actions Defined by Auto Scaling](#autoscaling-actions-as-permissions)
++ [Resources Defined by Auto Scaling](#autoscaling-resources-for-iam-policies)
++ [Condition Keys for Auto Scaling](#autoscaling-policy-keys)
 
-+ `[autoscaling:EnterStandby](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnterStandby.html)`
+## Actions Defined by Auto Scaling<a name="autoscaling-actions-as-permissions"></a>
 
-+ `[autoscaling:PutNotificationConfiguration](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutNotificationConfiguration.html)`
+You can specify the following actions in the `Action` element of an IAM policy statement\. By using policies, you define the permissions for anyone performing an operation in AWS\. When you use an action in a policy, you usually allow or deny access to the API operation or CLI command with the same name\. However, in some cases, a single action controls access to more than one operation\. Alternatively, some operations require several different actions\. For details about the columns in the following table, see [The Actions Table](reference_policies_actions-resources-contextkeys.md#actions_table)\.
 
-+ `[autoscaling:DeleteLaunchConfiguration](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteLaunchConfiguration.html)`
 
-+ `[autoscaling:CreateOrUpdateTags](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateOrUpdateTags.html)`
+****  
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/IAM/latest/UserGuide/list_autoscaling.html)
 
-+ `[autoscaling:PutScheduledUpdateGroupAction](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScheduledUpdateGroupAction.html)`
+## Resources Defined by Auto Scaling<a name="autoscaling-resources-for-iam-policies"></a>
 
-+ `[autoscaling:AttachLoadBalancerTargetGroups](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachLoadBalancerTargetGroups.html)`
+The following resource types are defined by this service and can be used in the `Resource` element of IAM permission policy statements\. Each action in the [Actions table](#autoscaling-actions-as-permissions) identifies the resource types that can be specified with that action\. A resource type can also define which condition keys you can include in a policy\. These keys are displayed in the last column of the table\. For details about the columns in the following table, see [The Resource Types Table](reference_policies_actions-resources-contextkeys.md#resources_table)\.
 
-+ `[autoscaling:SetDesiredCapacity](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetDesiredCapacity.html)`
 
-+ `[autoscaling:DeleteLifecycleHook](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteLifecycleHook.html)`
+****  
 
-+ `[autoscaling:DeleteNotificationConfiguration](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteNotificationConfiguration.html)`
+| Resource Types | ARN | Condition Keys | 
+| --- | --- | --- | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-resources](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-resources) | arn:$\{Partition\}:autoscaling:$\{Region\}:$\{Account\}:autoScalingGroup:$\{GroupId\}:autoScalingGroupName/$\{GroupFriendlyName\} | [autoscaling:ResourceTag/](#autoscaling-autoscaling_ResourceTag_)  | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-resources](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-resources) | arn:$\{Partition\}:autoscaling:$\{Region\}:$\{Account\}:launchConfiguration:$\{Id\}:launchConfigurationName/$\{LaunchConfigurationName\} |  | 
 
-+ `[autoscaling:PutScalingPolicy](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScalingPolicy.html)`
+## Condition Keys for Auto Scaling<a name="autoscaling-policy-keys"></a>
 
-+ `[autoscaling:DescribeAutoScalingGroups](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingGroups.html)`
+Auto Scaling defines the following condition keys that can be used in the `Condition` element of an IAM policy\. You can use these keys to further refine the conditions under which the policy statement applies\. For details about the columns in the following table, see [The Condition Keys Table](reference_policies_actions-resources-contextkeys.md#context_keys_table)\.
 
-+ `[autoscaling:DescribeLifecycleHooks](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLifecycleHooks.html)`
+To view the global condition keys that are available to all services, see [Available Global Condition Keys](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#AvailableKeys) in the *IAM Policy Reference*\.
 
-+ `[autoscaling:DescribeTags](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTags.html)`
 
-+ `[autoscaling:DescribeAdjustmentTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAdjustmentTypes.html)`
+****  
 
-+ `[autoscaling:DescribeAutoScalingNotificationTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingNotificationTypes.html)`
-
-+ `[autoscaling:DescribeLoadBalancerTargetGroups](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancerTargetGroups.html)`
-
-+ `[autoscaling:DescribeLoadBalancers](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancers.html)`
-
-+ `[autoscaling:UpdateAutoScalingGroup](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_UpdateAutoScalingGroup.html)`
-
-+ `[autoscaling:DeleteScheduledAction](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteScheduledAction.html)`
-
-+ `[autoscaling:DetachLoadBalancerTargetGroups](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancerTargetGroups.html)`
-
-+ `[autoscaling:AttachInstances](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachInstances.html)`
-
-+ `[autoscaling:TerminateInstanceInAutoScalingGroup](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_TerminateInstanceInAutoScalingGroup.html)`
-
-+ `[autoscaling:ExitStandby](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ExitStandby.html)`
-
-+ `[autoscaling:DescribeScalingActivities](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScalingActivities.html)`
-
-+ `[autoscaling:DescribeNotificationConfigurations](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeNotificationConfigurations.html)`
-
-+ `[autoscaling:DetachLoadBalancers](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancers.html)`
-
-+ `[autoscaling:ExecutePolicy](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ExecutePolicy.html)`
-
-+ `[autoscaling:DeletePolicy](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeletePolicy.html)`
-
-+ `[autoscaling:DescribePolicies](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribePolicies.html)`
-
-+ `[autoscaling:DescribeTerminationPolicyTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTerminationPolicyTypes.html)`
-
-+ `[autoscaling:RecordLifecycleActionHeartbeat](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_RecordLifecycleActionHeartbeat.html)`
-
-+ `[autoscaling:DescribeScheduledActions](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScheduledActions.html)`
-
-+ `[autoscaling:DescribeMetricCollectionTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeMetricCollectionTypes.html)`
-
-+ `[autoscaling:DescribeAccountLimits](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAccountLimits.html)`
-
-+ `[autoscaling:PutLifecycleHook](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html)`
-
-+ `[autoscaling:DescribeLifecycleHookTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLifecycleHookTypes.html)`
-
-+ `[autoscaling:AttachLoadBalancers](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachLoadBalancers.html)`
-
-+ `[autoscaling:CompleteLifecycleAction](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CompleteLifecycleAction.html)`
-
-+ `[autoscaling:SuspendProcesses](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SuspendProcesses.html)`
-
-+ `[autoscaling:SetInstanceProtection](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetInstanceProtection.html)`
-
-+ `[autoscaling:DetachInstances](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachInstances.html)`
-
-+ `[autoscaling:CreateAutoScalingGroup](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateAutoScalingGroup.html)`
-
-+ `[autoscaling:CreateLaunchConfiguration](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateLaunchConfiguration.html)`
-
-+ `[autoscaling:EnableMetricsCollection](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnableMetricsCollection.html)`
-
-+ `[autoscaling:DisableMetricsCollection](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DisableMetricsCollection.html)`
-
-+ `[autoscaling:DescribeLaunchConfigurations](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLaunchConfigurations.html)`
-
-+ `[autoscaling:ResumeProcesses](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ResumeProcesses.html)`
-
-+ `[autoscaling:DeleteAutoScalingGroup](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteAutoScalingGroup.html)`
-
-+ `[autoscaling:SetInstanceHealth](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetInstanceHealth.html)`
-
-+ `[autoscaling:DescribeScalingProcessTypes](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScalingProcessTypes.html)`
-
-+ `[autoscaling:DeleteTags](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteTags.html)`
-
-+ `[autoscaling:DescribeAutoScalingInstances](http://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingInstances.html)`
-
-**Condition context keys for Auto Scaling**
-
-For more information about using condition keys in an IAM policy for Auto Scaling, see [Auto Scaling Keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/IAM.html#UsingWithAutoScaling_Actions) in the *Amazon EC2 Auto Scaling User Guide*\.
-
-Auto Scaling has the following service\-specific context keys that can be used in an IAM policy\. For the list of the global condition context keys that are available to all services, see [Available Global Condition Keys](reference_policies_condition-keys.md#AvailableKeys) in the *IAM Policy Elements Reference*\.
-
-+ `autoscaling:ImageId`
-
-+ `autoscaling:InstanceType`
-
-+ `autoscaling:LaunchConfigurationName`
-
-+ `autoscaling:LoadBalancerNames`
-
-+ `autoscaling:MaxSize`
-
-+ `autoscaling:MinSize`
-
-+ `autoscaling:ResourceTag/`
-
-+ `autoscaling:SpotPrice`
-
-+ `autoscaling:TargetGroupARNs`
-
-+ `autoscaling:VPCZoneIdentifiers`
-
-+ `aws:RequestTag/`
+| Condition Keys | Description | Type | 
+| --- | --- | --- | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The AMI used to create the instance\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The type of instance, in terms of the hardware resources available\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The name of a launch configuration\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The name of the load balancer\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The maximum scaling size\. | Numeric | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The minimum scaling size\. | Numeric | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The value of a tag attached to a resource\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The spot price associated with an instance\. | Numeric | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The ARN of a target group\. | ARN | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The identifier of a VPC zone\. | String | 
+| [http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys](http://docs.aws.amazon.com/autoscaling/latest/userguide/control-access-using-iam.html#policy-auto-scaling-condition-keys) | The value of a tag associated with the request\. | String | 
